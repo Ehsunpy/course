@@ -1,0 +1,71 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="client_section layout_padding">
+    <div class="container">
+        <h2 class="main-heading text-center">
+            ثبت‌نام کاربر جدید
+        </h2>
+        <p class="text-center">
+            برای دسترسی به تمامی دوره‌ها در سایت عضو شوید
+        </p>
+        
+        <div class="layout_padding2">
+            <div class="client_container d-flex flex-column mb-4">
+                <div class="client_detail d-flex align-items-center">
+                    <div class="client_img-box">
+                        <img src="{% static 'images/signup-icon.png' %}" 
+                             alt="آیکون ثبت‌نام" 
+                             class="img-fluid"
+                             style="max-width: 150px">
+                    </div>
+                    
+                    <div class="client_detail-box">
+                        <form method="post" class="w-100">
+                            {% csrf_token %}
+                            
+                            <div class="form-group">
+                                <label for="id_username" class="font-weight-bold">نام کاربری:</label>
+                                {{ form.username }}
+                                {% if form.username.errors %}
+                                <small class="text-danger">{{ form.username.errors }}</small>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_password1" class="font-weight-bold">رمز عبور:</label>
+                                {{ form.password1 }}
+                                {% if form.password1.errors %}
+                                <small class="text-danger">{{ form.password1.errors }}</small>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_password2" class="font-weight-bold">تکرار رمز عبور:</label>
+                                {{ form.password2 }}
+                                {% if form.password2.errors %}
+                                <small class="text-danger">{{ form.password2.errors }}</small>
+                                {% endif %}
+                            </div>
+
+                            <button type="submit" 
+                                    class="btn btn-primary btn-block mt-4 py-2">
+                                ثبت‌نام
+                            </button>
+                        </form>
+                        
+                        <div class="mt-4 text-center">
+                            <p class="mb-1">قبلا حساب کاربری دارید؟</p>
+                            <a href="{% url 'login' %}" 
+                               class="btn btn-outline-secondary">
+                                ورود به سیستم
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

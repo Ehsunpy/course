@@ -1,0 +1,21 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="home_section layout_padding">
+    <div class="container">
+        <h2 class="main-heading text-center">
+            صفحه اصلی
+        </h2>
+        <p class="text-center">
+            به وب سایت دوره خوش آمدید. برای مشاهده دوره‌ها روی دکمه زیر کلیک کنید.
+        </p>
+        
+        <div class="layout_padding2 text-center">
+            <a href="{% url 'post:lists' %}" class="btn btn-primary btn-lg">
+                مشاهده دوره‌ها
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

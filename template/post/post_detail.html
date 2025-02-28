@@ -1,0 +1,45 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="client_section layout_padding">
+    <div class="container">
+        <h2 class="main-heading text-center">
+            {{ lists.title }}
+        </h2>
+        <p class="text-center">
+            <!-- {{ lists.description }} -->
+        </p>
+      
+        <div class="layout_padding2">
+            <div class="client_container d-flex flex-column">
+                <div class="client_detail d-flex align-items-center">
+                    <div class="client_img-box">
+                        <!-- نمایش تصویر مرتبط یا لوگو -->
+                        <img src="{% static 'images/python.png' %}" alt="آیکون دوره" class="img-fluid">
+                    </div>
+                    <div class="client_detail-box">
+                        <div class="font-weight-bold mb-3">
+                            <!-- نمایش ویدیو -->
+                            <video width="100%" controls>
+                                <source src="{{ lists.video_file.url }}" type="video/mp4">
+                                مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                            </video>
+                        </div>
+                        <div class="mt-3">
+                            <!-- اطلاعات تکمیلی -->
+                            <h4 class="text-primary">
+                                توضیحات تکمیلی
+                            </h4>
+                            <p class="text-secondary">
+                                {{ lists.description|linebreaks }}
+                            </p>
+                        </div>
+                        <P> <a href="/">برگشت</a></P>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

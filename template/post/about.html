@@ -1,0 +1,25 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+  {% block content %}
+
+<section class="about_section layout_padding">
+  <div class="container">
+      <div class="heading_container">
+          <h2>About Us</h2>
+      </div>
+      <div class="row">
+          {% for video in videos %}
+          <div class="col-md-4">
+              <div class="video_item">
+                  <h3>{{ video.title }}</h3>
+                  <video width="320" height="240" controls>
+                      <source src="{{ video.video_file.url }}" type="video/mp4">
+                      مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
+                  </video>
+                  <p>{{ video.description }}</p>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+ {% endblock content %}

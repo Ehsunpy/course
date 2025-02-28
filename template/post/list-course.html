@@ -1,0 +1,40 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="client_section layout_padding">
+    <div class="container">
+        <h2 class="main-heading text-center">
+            دوره‌های آموزشی ما
+        </h2>
+        <p class="text-center">
+            در این بخش می‌توانید لیست کامل جلسات آموزشی را مشاهده کنید
+        </p>
+        
+        <div class="layout_padding2">
+            {% for list in lists %}
+            <div class="client_container d-flex flex-column mb-4">
+                <div class="client_detail d-flex align-items-center">
+                    <div class="client_img-box">
+                        <img src="{% static 'images/blackicon.png' %}" alt="آیکون دوره">
+                    </div>
+                    <div class="client_detail-box">
+                        <h4 class="text-primary">
+                            جلسه {{ forloop.counter }}
+                        </h4>
+                        <h3 class="font-weight-bold">
+                            <a href="{{list.id}}/">{{list.pk}} <div> : {{ list.title }}</div>
+                        </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <!-- اگر توضیحات اضافی وجود دارد -->
+                    <!-- <p class="text-secondary">{{ list.description }}</p> -->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
