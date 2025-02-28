@@ -27,7 +27,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/home/', login_required(views.home), name='home'),  # محافظت از مسیر هوم با login_required
     path('post/', include('post.urls', namespace='post')),
-    path('', include('django.contrib.auth.urls')),  # تنظیم صفحه لاگین به عنوان صفحه اول
+    path('', views.home, name='home'),  # Ensure the home URL pattern is defined
 ]
 
 if settings.DEBUG:
