@@ -1,7 +1,7 @@
-Django==4.2.7
-Pillow==10.0.1
-django-embed-video==2.0.0
-python-decouple==3.8
-whitenoise==6.5.0
-gunicorn==21.2.0
-wheel==0.41.2
+Django
+Pillow
+django-embed-video
+python-decouple
+whitenoise
+gunicorn
+wheel
