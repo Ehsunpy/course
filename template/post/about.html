@@ -1,25 +1,96 @@
 {% extends "post/base.html" %}
+{% load embed_video_tags %}
 {% load static %}
 
-  {% block content %}
+{% block content %}
+<div class="container mt-4">
+    <!-- هشدار امنیتی -->
+    <div class="alert alert-danger text-center mb-4">
+        🔒 برای مشاهده ویدیوها از فیلترشکن استفاده کنید
+    </div>
 
-<section class="about_section layout_padding">
-  <div class="container">
-      <div class="heading_container">
-          <h2>About Us</h2>
-      </div>
-      <div class="row">
-          {% for video in videos %}
-          <div class="col-md-4">
-              <div class="video_item">
-                  <h3>{{ video.title }}</h3>
-                  <video width="320" height="240" controls>
-                      <source src="{{ video.video_file.url }}" type="video/mp4">
-                      مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
-                  </video>
-                  <p>{{ video.description }}</p>
-              </div>
-          </div>
-          {% endfor %}
-      </div>
- {% endblock content %}
+    <!-- ساختار اصلی بدون تغییر -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- بهبود ظاهری کارت بدون تغییر عملکرد -->
+            <div class="card shadow-lg border-0">
+                <!-- هدر کارت -->
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0">{{ lists.title }}</h3>
+                </div>
+
+                <!-- بدنه کارت با ساختار اصلی -->
+                <div class="card-body p-0">
+                    <div class="ratio ratio-16by9 bg-light ">
+                        <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+
+                            {% video lists.youtube_url %} <!-- استفاده از متغیر اصلی lists -->
+                        </div>
+                    </div>
+                    
+                    <!-- توضیحات -->
+                    <div class="p-4">
+                        <p class="lead mb-0">{{ lists.description }}</p>
+                    </div>
+                </div>
+
+                <!-- فوتر کارت -->
+                <div class="card-footer bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            📅 {{ lists.created_at|date:"Y/m/d" }}
+                        </small>
+                        <!-- دکمه اشتراک گذاری اختیاری -->
+                        <button class="btn btn-sm btn-outline-primary">
+                            📤 اشتراک گذاری
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- بخش اسکریپت‌ها -->
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<!-- اسکریپت Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap" async defer></script>
+
+<!-- اسکریپت‌های سفارشی -->
+<script>
+// فعالسازی کاروسل
+$(document).ready(function(){
+    $('#carouselExampleControls').carousel({
+        interval: 3000,
+        pause: "hover"
+    }
+
+    // تابع نقشه
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: {lat: 40.645037, lng: -73.880224}
+        });
+
+        var image = '{% static "images/maps-and-flags.png" %}';
+        var beachMarker = new google.maps.Marker({
+            position: {lat: 40.645037, lng: -73.880224},
+            map: map,
+            icon: image
+        });
+    }
+
+    // رفع مشکل ریسپانسیو ویدیو
+    function adjustVideoSize() {
+        $('.ratio-16by9').each(function(){
+            $(this).height($(this).width() * 9/16);
+        });
+    }
+    
+    $(window).on('resize', adjustVideoSize);
+    adjustVideoSize();
+});
+});
+</script>
+{% endblock %}

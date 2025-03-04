@@ -1,11 +1,8 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
 from .models import Video
+from embed_video.admin import AdminVideoMixin
 
-class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'uploaded_at')
-    search_fields = ('title', 'description')
+class VideoAdmin(AdminVideoMixin, admin.ModelAdmin):
+    pass
 
 admin.site.register(Video, VideoAdmin)

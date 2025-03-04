@@ -1,4 +1,7 @@
 from django.shortcuts import render
+
+# Create your views here.
+from django.shortcuts import render
 from django.views import generic
 
 from .models import Video
@@ -12,7 +15,7 @@ class listCourse(generic.ListView):
 class Post_Detail(generic.DetailView):
     #  جای تابع زیر میتونا این مدل را نوشت
     model = Video
-    template_name = 'post/post_detail.html'
+    template_name = 'post/about.html'
     context_object_name = 'lists'  
     
 # def post_detail(request,pk): # pk:این  همون عددی که در urlمیگیره اینجا و  یو ار ال باید یکی باشه
