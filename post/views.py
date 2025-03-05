@@ -6,6 +6,14 @@ from django.views import generic
 
 from .models import Video
 
+class Wellcome(generic.TemplateView):
+    template_name = 'post/wellcome.html'
+
+
+class Home(generic.TemplateView):
+    template_name = 'post/home.html'
+
+
 class listCourse(generic.ListView):
     queryset = Video.objects.all()
     template_name = 'post/list-course.html'

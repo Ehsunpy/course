@@ -1,0 +1,31 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="home_section layout_padding">
+    <div class="container">
+        <h2 class="main-heading text-center">
+            صفحه ورود
+        </h2>
+        <p class="text-center">
+            به وب سایت دوره خوش آمدید. برای ورود به حساب کاربری خود روی دکمه زیر کلیک کنید.
+        </p>
+        
+        <div class="layout_padding2 text-center">
+            {% if user.is_authenticated %}
+            <li>
+                <a class="nav-link" href="{% url 'login' %}?next={% url 'post:home' %}">
+                    وارد شدن به صفحه کاربری
+
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'logout' %}?next={% url 'logout' %}">
+
+            </li>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
